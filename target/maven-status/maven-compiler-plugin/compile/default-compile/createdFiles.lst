@@ -1,0 +1,8 @@
+com\group\suscrew\service\CrewService.class
+com\group\suscrew\controller\CrewApiController.class
+com\group\suscrew\controller\PageController.class
+com\group\suscrew\model\CrewMember.class
+com\group\suscrew\model\GameConfig.class
+com\group\suscrew\SusCrewApplication.class
+com\group\suscrew\model\ClueInfo.class
+com\group\suscrew\model\TaskInfo.class

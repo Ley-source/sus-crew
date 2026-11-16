@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="theme-color" content="#070a1c">
+<title th:text="${title}">Sus Crew</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bungee&family=Fredoka:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body th:attr="data-screen=${screen}">
+
+<canvas id="game"></canvas>
+
+<!-- ===== MAIN MENU ===== -->
+<main id="menu" class="screen">
+  <p class="ship" th:text="${shipName} + ' · ' + ${groupName}">FROM BSIT 3-2 STUDENTS</p>
+  <h1 class="title" data-t="SUS CREW">SUS CREW</h1>
+  <p class="tag">Welcome aboard! Complete your tasks. Discover your crew. Find the impostor!</p>
+  <div class="btns">
+    <button id="bStart" class="btn big">Start Game</button>
+    <button id="bDb" class="btn">Crew Database</button>
+    <button id="bHow" class="btn">How to Play</button>
+  </div>
+  <button id="bReset" class="link">Reset progress</button>
+</main>
+
+<!-- ===== GAME HUD ===== -->
+<div id="hud" class="hidden">
+  <div id="tasklist"></div>
+  <div id="prog"><i></i><span></span></div>
+  <div id="tools">
+    <button id="bNotes" title="Crew Database">Crew</button>
+    <button id="bSnd" title="Sound (M)">Sound</button>
+    <button id="bFs" title="Fullscreen (F)">Full</button>
+    <button id="bMenu" title="Menu">Menu</button>
+  </div>
+  <canvas id="mini" width="144" height="104"></canvas>
+  <div id="prompt" class="hidden"></div>
+  <div id="joy"><div id="knob"></div></div>
+  <button id="useBtn">USE</button>
+</div>
+
+<div id="banner" class="hidden"></div>
+<div id="toast" class="hidden"></div>
+<div id="cutBtns" class="hidden"></div>
+
+<!-- ===== TASK OVERLAY ===== -->
+<div id="task" class="ov hidden">
+  <div class="panel">
+    <h2 id="tTitle"></h2>
+    <canvas id="tc" width="560" height="360"></canvas>
+    <p id="tHint"></p>
+    <button id="tClose" class="btn">Close</button>
+  </div>
+</div>
+
+<!-- ===== CREW DATABASE ===== -->
+<div id="db" class="ov hidden">
+  <div class="term">
+    <header>
+      <h2>CREW DATABASE</h2><span id="dbCount"></span>
+      <button class="x" data-close="#db">Close</button>
+    </header>
+    <nav>
+      <button data-tab="crew" class="on">Crew</button>
+      <button data-tab="clues">Clue notebook</button>
+    </nav>
+    <section id="dbCrew"><div id="slots"></div><div id="profile"></div></section>
+    <section id="dbClues" class="hidden"></section>
+  </div>
+</div>
+
+<!-- ===== EMERGENCY MEETING ===== -->
+<div id="meeting" class="ov hidden">
+  <div class="meet">
+    <h2>EMERGENCY MEETING</h2>
+    <div id="chat"></div>
+    <div id="voteBox" class="hidden">
+      <p>Who is the Impostor?</p>
+      <div id="vote"></div>
+      <div id="tally"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== RESULTS ===== -->
+<div id="results" class="ov hidden"><div class="term" id="resBox"></div></div>
+
+<!-- ===== HOW TO PLAY ===== -->
+<div id="how" class="ov hidden">
+  <div class="term how">
+    <header><h2>HOW TO PLAY</h2><button class="x" data-close="#how">Close</button></header>
+    <ul>
+      <li><b>Move:</b> WASD or arrow keys. On a phone, use the joystick.</li>
+      <li><b>Use:</b> walk to a glowing pad and press E (or the USE button).</li>
+      <li><b>Goal:</b> finish the tasks. Each one wakes up a hidden crewmate.</li>
+      <li><b>Investigate:</b> the glowing "?" spots hide clues about the Impostor.</li>
+      <li><b>Finale:</b> once all four crewmates are found, the Navigation console triggers an emergency meeting.</li>
+      <li><b>Shortcuts:</b> F fullscreen, M mute, Esc close a window.</li>
+    </ul>
+  </div>
+</div>
+
+<script th:src="@{/js/game.js}"></script>
+</body>
+</html>
